@@ -1,0 +1,210 @@
+TAP version 13
+# Subtest: balenaFin suite - v0.0.1 - Mon, 19 Sep 2022 10:20:32 GMT
+    # Subtest: balenaOS
+        # Subtest: check balenaOS version valid
+            # Subtest: check result
+                # balenaOS version is 2.101.7+rev2
+                # 
+                ok 1 - semver of balenaOS should be valid
+                1..1
+            ok 1 - check result # time=85.749ms
+            
+            1..1
+        ok 1 - check balenaOS version valid # time=497.82ms
+        
+        1..1
+    ok 1 - balenaOS # time=565.609ms
+    
+    # Subtest: Bluetooth
+        # Subtest: check bluetooth is functional
+            not ok 1 - Command failed: hcitool scan Device is not available: No such device
+              ---
+              at:
+                line: 399
+                column: 12
+                file: node:child_process
+                function: ChildProcess.exithandler
+              killed: false
+              code: 1
+              signal: null
+              cmd: hcitool scan
+              stdout: ""
+              stderr: |
+                Device is not available: No such device
+              tapCaught: returnedPromiseRejection
+              test: check bluetooth is functional
+              ...
+            
+            1..1
+            # failed 1 test
+        not ok 1 - check bluetooth is functional # time=237.902ms
+        
+        1..1
+        # failed 1 test
+    not ok 2 - Bluetooth # time=263.961ms
+      ---
+      timeout: 15000
+      ...
+    
+    # Subtest: Coprocessor
+        # Subtest: attempt to flash firmata
+            # attempting to flash firmware: /usr/src/app/suites/coprocessor/bin/firmata.hex with bootloader: /usr/src/app/suites/coprocessor/bin/bootloader.s37
+            # spawning openocd process with board config -d2,-f,board/balena-fin/balena-fin-v1-1.cfg
+            # spawning telnet client process...
+            # telnet stderr: Connection closed by foreign host.
+            # 
+            # openocd child process exited with code 0
+            # telnet child process exited with code 1
+            ok 1 - bootloader and firmware should start programming
+            ok 2 - bootloader and firmware should finish programming
+            ok 3 - coprocessor should be type of 'EFR32MG1B Blue Gecko'
+            ok 4 - coprocessor should have flash size of '256kbytes'
+            1..4
+        ok 1 - attempt to flash firmata # time=64192.27ms
+        
+        1..1
+    ok 3 - Coprocessor # time=64216.647ms
+    
+    # Subtest: EEPROM
+        # generate test payload: 'MRn+8GkvxEV+L/WtFPCrh'
+        # Subtest: check eeprom write
+            # writing payload to eeprom
+            ok 1 - no errors should be reported during eeprom - write
+            1..1
+        ok 1 - check eeprom write # time=139.306ms
+        
+        # Subtest: check eeprom read
+            ok 1 - no errors should be reported during eeprom - read
+            ok 2 - expected to read 'MRn+8GkvxEV+L/WtFPCrh' from eeprom
+            1..2
+        ok 2 - check eeprom read # time=33.829ms
+        
+        1..2
+    ok 4 - EEPROM # time=208.249ms
+    
+    # Subtest: eMMC
+        # Subtest: check size of eMMC
+            # found eMMC of size 16 GB
+            ok 1 - should be of size 8, 16, 32 or 64 GB; is 16 GB
+            1..1
+        ok 1 - check size of eMMC # time=36.983ms
+        
+        1..1
+    ok 5 - eMMC # time=56.591ms
+    
+    # Subtest: Ethernet
+        # Subtest: check eth0 interface is available
+            ok 1 - should be able to see eth0
+            1..1
+        ok 1 - check eth0 interface is available # time=45.949ms
+        
+        # Subtest: check can reach internet
+            ok 1 - should be able to reach the internet
+            1..1
+        ok 2 - check can reach internet # time=4101.983ms
+        
+        1..2
+    ok 6 - Ethernet # time=4173.186ms
+    
+    # Subtest: I2C
+        # Subtest: check i2c interface is available
+            # Subtest: check for i2c addresses
+                ok 1 - i2c address list should be greater than 0
+                # found 3 i2c addresses
+                1..1
+            ok 1 - check for i2c addresses # time=11.916ms
+            
+            1..1
+        ok 1 - check i2c interface is available # time=156.597ms
+        
+        1..1
+    ok 7 - I2C # time=186.057ms
+    
+    ok 8 - Modem # SKIP
+    # Subtest: RGB LED
+        # Subtest: check rgb led can be controlled
+            # setting RGB LED to cyan
+            # Subtest: check dmesg for driver output
+                ok 1 - should be able to control RGB LED
+                # driver output: [   11.383182] pca953x 11-0020: supply vcc not found, using dummy regulator
+                # [   11.383445] pca953x 11-0020: using no AI
+                # 
+                1..1
+            ok 1 - check dmesg for driver output # time=11.993ms
+            
+            1..1
+        ok 1 - check rgb led can be controlled # time=2110.748ms
+        
+        1..1
+    ok 9 - RGB LED # time=2138.053ms
+    
+    # Subtest: RTC
+        # Subtest: check the RTC is registered
+            # Subtest: check that a date is received
+                # rtc datetime shown as 2022-09-19 10:21:44.375438+00:00
+                # 
+                ok 1 - hwclock should report valid datetime
+                ok 2 - hwclock should not report any errors
+                1..2
+            ok 1 - check that a date is received # time=20.339ms
+            
+            1..1
+        ok 1 - check the RTC is registered # time=677.434ms
+        
+        1..1
+    ok 10 - RTC # time=696.394ms
+    
+    # Subtest: USB
+        # Subtest: check USB list for devices
+            # Subtest: check for at least 3 devices on the bus
+                ok 1 - expecting at least 3 devices on the usb bus
+                1..1
+            ok 1 - check for at least 3 devices on the bus # time=7.784ms
+            
+            1..1
+        ok 1 - check USB list for devices # time=75.039ms
+        
+        1..1
+    ok 11 - USB # time=93.757ms
+    
+    # Subtest: WiFi
+        # Subtest: check wlan0 interface is available
+            not ok 1 - Command failed: ifconfig wlan0 wlan0: error fetching interface information: Device not found
+              ---
+              at:
+                line: 399
+                column: 12
+                file: node:child_process
+                function: ChildProcess.exithandler
+              killed: false
+              code: 1
+              signal: null
+              cmd: ifconfig wlan0
+              stdout: ""
+              stderr: |
+                wlan0: error fetching interface information: Device not found
+              tapCaught: returnedPromiseRejection
+              test: check wlan0 interface is available
+              ...
+            
+            1..1
+            # failed 1 test
+        not ok 1 - check wlan0 interface is available # time=94.291ms
+        
+        1..1
+        # failed 1 test
+    not ok 12 - WiFi # time=117.494ms
+    
+    1..12
+    # failed 2 of 12 tests
+    # skip: 1
+not ok 1 - balenaFin suite - v0.0.1 - Mon, 19 Sep 2022 10:20:32 GMT # time=72930.808ms
+  ---
+  timeout: 100000
+  ...
+
+1..1
+# failed 1 test
+# time=73135.109ms
+# serial='1130013720220001-0008'
+# location='Athens, Attica, Greece'
