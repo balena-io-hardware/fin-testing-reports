@@ -1,0 +1,224 @@
+TAP version 13
+# Subtest: balenaFin suite - v0.0.1 - Wed, 21 Sep 2022 11:19:41 GMT
+    # Subtest: balenaOS
+        # Subtest: check balenaOS version valid
+            # Subtest: check result
+                # balenaOS version is 2.101.7+rev2
+                # 
+                ok 1 - semver of balenaOS should be valid
+                1..1
+            ok 1 - check result # time=118.66ms
+            
+            1..1
+        ok 1 - check balenaOS version valid # time=748.161ms
+        
+        1..1
+    ok 1 - balenaOS # time=863.92ms
+    
+    # Subtest: Bluetooth
+        # Subtest: check bluetooth is functional
+            # Subtest: check for hci0
+                not ok 1 - should report 1 instance of hci0 interface
+                  ---
+                  found: 0
+                  wanted: 1
+                  compare: ===
+                  at:
+                    line: 10
+                    column: 27
+                    file: suites/bluetooth/index.js
+                    type: Test
+                  stack: |
+                    Test.<anonymous> (suites/bluetooth/index.js:10:27)
+                    suites/bluetooth/index.js:9:23
+                    Test.<anonymous> (suites/bluetooth/index.js:7:13)
+                  source: >2
+                                        t.test('check for hci0', t => {
+                                            t.equal(util.countOccurrences(result.stdout, 'hci0'), 1, `should report 1 instance of hci0 interface`)
+                    --------------------------^
+                                            t.end()
+                                        })
+                  ...
+                
+                1..1
+                # failed 1 test
+            not ok 1 - check for hci0 # time=497.106ms
+            
+            # Subtest: check bluetooth address
+                ok 1 - BD Address should not be AA:AA:AA:AA:AA:AA
+                1..1
+            ok 2 - check bluetooth address # time=22.023ms
+            
+            1..2
+            # failed 1 of 2 tests
+        not ok 1 - check bluetooth is functional # time=809.698ms
+        
+        1..1
+        # failed 1 test
+    not ok 2 - Bluetooth # time=881.604ms
+      ---
+      timeout: 15000
+      ...
+    
+    # Subtest: Coprocessor
+        # Subtest: attempt to flash firmata
+            # attempting to flash firmware: /usr/src/app/suites/coprocessor/bin/firmata.hex with bootloader: /usr/src/app/suites/coprocessor/bin/bootloader.s37
+            # spawning openocd process with board config -d2,-f,board/balena-fin/balena-fin-v1-1.cfg
+            # spawning telnet client process...
+            # telnet stderr: Connection closed by foreign host.
+            # 
+            # openocd child process exited with code 0
+            # telnet child process exited with code 1
+            ok 1 - bootloader and firmware should start programming
+            ok 2 - bootloader and firmware should finish programming
+            ok 3 - coprocessor should be type of 'EFR32MG1B Blue Gecko'
+            ok 4 - coprocessor should have flash size of '256kbytes'
+            1..4
+        ok 1 - attempt to flash firmata # time=64187.716ms
+        
+        1..1
+    ok 3 - Coprocessor # time=64255.363ms
+    
+    # Subtest: EEPROM
+        # generate test payload: 'FYmAWOzToP/hOER3d/iJN'
+        # Subtest: check eeprom write
+            # writing payload to eeprom
+            ok 1 - no errors should be reported during eeprom - write
+            1..1
+        ok 1 - check eeprom write # time=169.356ms
+        
+        # Subtest: check eeprom read
+            ok 1 - no errors should be reported during eeprom - read
+            ok 2 - expected to read 'FYmAWOzToP/hOER3d/iJN' from eeprom
+            1..2
+        ok 2 - check eeprom read # time=67.923ms
+        
+        1..2
+    ok 4 - EEPROM # time=284.225ms
+    
+    # Subtest: eMMC
+        # Subtest: check size of eMMC
+            # found eMMC of size 16 GB
+            ok 1 - should be of size 8, 16, 32 or 64 GB; is 16 GB
+            1..1
+        ok 1 - check size of eMMC # time=55.612ms
+        
+        1..1
+    ok 5 - eMMC # time=89.949ms
+    
+    # Subtest: Ethernet
+        # Subtest: check eth0 interface is available
+            ok 1 - should be able to see eth0
+            1..1
+        ok 1 - check eth0 interface is available # time=62.534ms
+        
+        # Subtest: check can reach internet
+            ok 1 - should be able to reach the internet
+            1..1
+        ok 2 - check can reach internet # time=4099.42ms
+        
+        1..2
+    ok 6 - Ethernet # time=4201.473ms
+    
+    # Subtest: I2C
+        # Subtest: check i2c interface is available
+            # Subtest: check for i2c addresses
+                ok 1 - i2c address list should be greater than 0
+                # found 3 i2c addresses
+                1..1
+            ok 1 - check for i2c addresses # time=25.348ms
+            
+            1..1
+        ok 1 - check i2c interface is available # time=181.019ms
+        
+        1..1
+    ok 7 - I2C # time=206.539ms
+    
+    ok 8 - Modem # SKIP
+    # Subtest: RGB LED
+        # Subtest: check rgb led can be controlled
+            # setting RGB LED to cyan
+            # Subtest: check dmesg for driver output
+                ok 1 - should be able to control RGB LED
+                # driver output: [   11.540664] pca953x 11-0020: supply vcc not found, using dummy regulator
+                # [   11.540878] pca953x 11-0020: using no AI
+                # 
+                1..1
+            ok 1 - check dmesg for driver output # time=17.316ms
+            
+            1..1
+        ok 1 - check rgb led can be controlled # time=2188.298ms
+        
+        1..1
+    ok 9 - RGB LED # time=2220.307ms
+    
+    # Subtest: RTC
+        # Subtest: check the RTC is registered
+            # Subtest: check that a date is received
+                # rtc datetime shown as 2022-09-21 11:20:54.821613+00:00
+                # 
+                ok 1 - hwclock should report valid datetime
+                ok 2 - hwclock should not report any errors
+                1..2
+            ok 1 - check that a date is received # time=32.901ms
+            
+            1..1
+        ok 1 - check the RTC is registered # time=265.512ms
+        
+        1..1
+    ok 10 - RTC # time=299.096ms
+    
+    # Subtest: USB
+        # Subtest: check USB list for devices
+            # Subtest: check for at least 3 devices on the bus
+                ok 1 - expecting at least 3 devices on the usb bus
+                1..1
+            ok 1 - check for at least 3 devices on the bus # time=22.315ms
+            
+            1..1
+        ok 1 - check USB list for devices # time=180.512ms
+        
+        1..1
+    ok 11 - USB # time=209.372ms
+    
+    # Subtest: WiFi
+        # Subtest: check wlan0 interface is available
+            not ok 1 - Command failed: ifconfig wlan0 wlan0: error fetching interface information: Device not found
+              ---
+              at:
+                line: 399
+                column: 12
+                file: node:child_process
+                function: ChildProcess.exithandler
+              killed: false
+              code: 1
+              signal: null
+              cmd: ifconfig wlan0
+              stdout: ""
+              stderr: |
+                wlan0: error fetching interface information: Device not found
+              tapCaught: returnedPromiseRejection
+              test: check wlan0 interface is available
+              ...
+            
+            1..1
+            # failed 1 test
+        not ok 1 - check wlan0 interface is available # time=179.359ms
+        
+        1..1
+        # failed 1 test
+    not ok 12 - WiFi # time=203.943ms
+    
+    1..12
+    # failed 2 of 12 tests
+    # skip: 1
+not ok 1 - balenaFin suite - v0.0.1 - Wed, 21 Sep 2022 11:19:41 GMT # time=73990.251ms
+  ---
+  timeout: 100000
+  ...
+
+1..1
+# failed 1 test
+# time=74192.654ms
+# serial='1130013720220001-0011'
+# location='Athens, Attica, Greece'
