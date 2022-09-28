@@ -1,0 +1,132 @@
+TAP version 13
+# date=Wed, 28 Sep 2022 14:15:31 GMT
+# version=0.0.1
+# Subtest: balenaFin QA suite
+    # Subtest: balenaOS
+        # Subtest: check balenaOS version valid
+            # Subtest: check result
+                # balenaOS version is 2.101.7+rev2
+                # 
+                ok 1 - semver of balenaOS should be valid
+                1..1
+            ok 1 - check result # time=33.165ms
+            
+            1..1
+        ok 1 - check balenaOS version valid # time=226.653ms
+        
+        1..1
+    ok 1 - balenaOS # time=271.69ms
+    
+    # Subtest: EEPROM
+        # generate test payload: 'wHMIBfgvBZB73t8v1rPZb'
+        # Subtest: check eeprom write
+            # writing payload to eeprom
+            ok 1 - no errors should be reported during eeprom - write
+            1..1
+        ok 1 - check eeprom write # time=171.104ms
+        
+        # Subtest: check eeprom read
+            ok 1 - no errors should be reported during eeprom - read
+            ok 2 - expected to read 'wHMIBfgvBZB73t8v1rPZb' from eeprom
+            1..2
+        ok 2 - check eeprom read # time=78.44ms
+        
+        1..2
+    ok 2 - EEPROM # time=302.713ms
+    
+    # Subtest: eMMC
+        # Subtest: check size of eMMC
+            # found eMMC of size 64 GB
+            ok 1 - should be of size 8, 16, 32 or 64 GB; is 64 GB
+            1..1
+        ok 1 - check size of eMMC # time=105.125ms
+        
+        1..1
+    ok 3 - eMMC # time=152.971ms
+    
+    # Subtest: Ethernet
+        # Subtest: check eth0 interface is available
+            ok 1 - should be able to see eth0
+            1..1
+        ok 1 - check eth0 interface is available # time=184.38ms
+        
+        # Subtest: check can reach internet
+            ok 1 - should be able to reach the internet
+            1..1
+        ok 2 - check can reach internet # time=4140.284ms
+        
+        1..2
+    ok 4 - Ethernet # time=4390.255ms
+    
+    # Subtest: I2C
+        # Subtest: check i2c interface is available
+            # Subtest: check for i2c addresses
+                ok 1 - i2c address list should be greater than 0
+                # found 3 i2c addresses
+                1..1
+            ok 1 - check for i2c addresses # time=8.317ms
+            
+            1..1
+        ok 1 - check i2c interface is available # time=189.492ms
+        
+        1..1
+    ok 5 - I2C # time=209.464ms
+    
+    ok 6 - Modem # SKIP
+    # Subtest: RGB LED
+        # Subtest: check rgb led can be controlled
+            # setting RGB LED to red
+            # setting RGB LED to blue
+            # setting RGB LED to green
+            # Subtest: check dmesg for driver output
+                ok 1 - should be able to control RGB LED
+                # driver output: [   11.747623] pca953x 11-0020: supply vcc not found, using dummy regulator
+                # [   11.747801] pca953x 11-0020: using no AI
+                # 
+                1..1
+            ok 1 - check dmesg for driver output # time=13.429ms
+            
+            1..1
+        ok 1 - check rgb led can be controlled # time=3146.654ms
+        
+        1..1
+    ok 7 - RGB LED # time=3186.439ms
+    
+    # Subtest: RTC
+        # Subtest: check the RTC is registered
+            # Subtest: check that a date is received
+                # rtc datetime shown as 2022-09-28 14:15:41.135089+00:00
+                # 
+                ok 1 - hwclock should report valid datetime
+                ok 2 - hwclock should not report any errors
+                1..2
+            ok 1 - check that a date is received # time=24.34ms
+            
+            1..1
+        ok 1 - check the RTC is registered # time=941.57ms
+        
+        1..1
+    ok 8 - RTC # time=974.012ms
+    
+    # Subtest: USB
+        # Subtest: check USB list for devices
+            # Subtest: check for at least 3 devices on the bus
+                ok 1 - expecting at least 3 devices on the usb bus
+                1..1
+            ok 1 - check for at least 3 devices on the bus # time=9.221ms
+            
+            1..1
+        ok 1 - check USB list for devices # time=187.666ms
+        
+        1..1
+    ok 9 - USB # time=207.123ms
+    
+    1..9
+    # skip: 1
+ok 1 - balenaFin QA suite # time=9795.195ms
+
+# ignored_tests=wifi,bluetooth,coprocessor
+1..1
+# time=9898.777ms
+# serial='1130013720220001-0013'
+# location='Athens, Attica, Greece'
