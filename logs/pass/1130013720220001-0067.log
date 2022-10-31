@@ -1,0 +1,163 @@
+TAP version 13
+# date=Mon, 31 Oct 2022 11:01:12 GMT
+# version=0.0.1
+# Subtest: balenaFin QA suite
+    # Subtest: balenaOS
+        # Subtest: check balenaOS version valid
+            # Subtest: check result
+                # balenaOS version is 2.101.7+rev2
+                # 
+                ok 1 - semver of balenaOS should be valid
+                1..1
+            ok 1 - check result # time=96.45ms
+            
+            1..1
+        ok 1 - check balenaOS version valid # time=503.616ms
+        
+        1..1
+    ok 1 - balenaOS # time=566.595ms
+    
+    # Subtest: Bluetooth
+        # Subtest: check bluetooth is functional
+            # Subtest: check for hci0
+                ok 1 - should report 1 instance of hci0 interface
+                1..1
+            ok 1 - check for hci0 # time=50.83ms
+            
+            # Subtest: check bluetooth address
+                ok 1 - BD Address should not be AA:AA:AA:AA:AA:AA
+                1..1
+            ok 2 - check bluetooth address # time=66.722ms
+            
+            1..2
+        ok 1 - check bluetooth is functional # time=451.096ms
+        
+        1..1
+    ok 2 - Bluetooth # time=515.146ms
+    
+    # Subtest: EEPROM
+        # generate test payload: 'Avq1TNDs5fYQl/msdBelc'
+        # Subtest: check eeprom write
+            # writing payload to eeprom
+            ok 1 - no errors should be reported during eeprom - write
+            1..1
+        ok 1 - check eeprom write # time=187.558ms
+        
+        # Subtest: check eeprom read
+            ok 1 - no errors should be reported during eeprom - read
+            ok 2 - expected to read 'Avq1TNDs5fYQl/msdBelc' from eeprom
+            1..2
+        ok 2 - check eeprom read # time=134.924ms
+        
+        1..2
+    ok 3 - EEPROM # time=431.682ms
+    
+    # Subtest: eMMC
+        # Subtest: check size of eMMC
+            # found eMMC of size 64 GB
+            ok 1 - should be of size 8, 16, 32 or 64 GB; is 64 GB
+            1..1
+        ok 1 - check size of eMMC # time=148.633ms
+        
+        1..1
+    ok 4 - eMMC # time=212.303ms
+    
+    # Subtest: Ethernet
+        # Subtest: check eth0 interface is available
+            ok 1 - should be able to see eth0
+            1..1
+        ok 1 - check eth0 interface is available # time=187.811ms
+        
+        # Subtest: check can reach internet
+            ok 1 - should be able to reach the internet
+            1..1
+        ok 2 - check can reach internet # time=4158.03ms
+        
+        1..2
+    ok 5 - Ethernet # time=4434.236ms
+    
+    # Subtest: I2C
+        # Subtest: check i2c interface is available
+            # Subtest: check for i2c addresses
+                ok 1 - i2c address list should be greater than 0
+                # found 3 i2c addresses
+                1..1
+            ok 1 - check for i2c addresses # time=11.985ms
+            
+            1..1
+        ok 1 - check i2c interface is available # time=226.241ms
+        
+        1..1
+    ok 6 - I2C # time=260.883ms
+    
+    ok 7 - Modem # SKIP
+    # Subtest: RGB LED
+        # Subtest: check rgb led can be controlled
+            # setting RGB LED to red
+            # setting RGB LED to blue
+            # setting RGB LED to green
+            # Subtest: check dmesg for driver output
+                ok 1 - should be able to control RGB LED
+                # driver output: [   12.281020] pca953x 11-0020: supply vcc not found, using dummy regulator
+                # [   12.281195] pca953x 11-0020: using no AI
+                # 
+                1..1
+            ok 1 - check dmesg for driver output # time=12.648ms
+            
+            1..1
+        ok 1 - check rgb led can be controlled # time=3173.031ms
+        
+        1..1
+    ok 8 - RGB LED # time=3201.985ms
+    
+    # Subtest: RTC
+        # Subtest: check the RTC is registered
+            # Subtest: check that a date is received
+                # rtc datetime shown as 2022-10-31 11:01:23.357957+00:00
+                # 
+                ok 1 - hwclock should report valid datetime
+                ok 2 - hwclock should not report any errors
+                1..2
+            ok 1 - check that a date is received # time=26.603ms
+            
+            1..1
+        ok 1 - check the RTC is registered # time=755.634ms
+        
+        1..1
+    ok 9 - RTC # time=781.698ms
+    
+    # Subtest: USB
+        # Subtest: check USB list for devices
+            # Subtest: check for at least 3 devices on the bus
+                ok 1 - expecting at least 3 devices on the usb bus
+                1..1
+            ok 1 - check for at least 3 devices on the bus # time=23.189ms
+            
+            1..1
+        ok 1 - check USB list for devices # time=196.707ms
+        
+        1..1
+    ok 10 - USB # time=235.936ms
+    
+    # Subtest: WiFi
+        # Subtest: check wlan0 interface is available
+            # Subtest: check result
+                ok 1 - should contain 1 instance of wlan0 interface
+                1..1
+            ok 1 - check result # time=30.567ms
+            
+            1..1
+        ok 1 - check wlan0 interface is available # time=70.265ms
+        
+        1..1
+    ok 11 - WiFi # time=107.873ms
+    
+    1..11
+    # skip: 1
+ok 1 - balenaFin QA suite # time=10922.709ms
+
+# ignored_tests=coprocessor
+1..1
+# time=11075.409ms
+# serial='1130013720220001-0067'
+# location='Athens, Attica, Greece'
