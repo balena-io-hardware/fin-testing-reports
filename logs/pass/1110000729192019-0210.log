@@ -1,0 +1,182 @@
+TAP version 13
+# date=Wed, 04 Jan 2023 11:18:01 GMT
+# version=1.0.0
+# Subtest: balenaFin QA suite
+    # Subtest: balenaOS
+        # Subtest: check balenaOS version valid
+            # Subtest: check result
+                # balenaOS version is 2.101.7+rev1
+                # 
+                ok 1 - semver of balenaOS should be valid
+                1..1
+            ok 1 - check result # time=51.662ms
+            
+            1..1
+        ok 1 - check balenaOS version valid # time=266.67ms
+        
+        1..1
+    ok 1 - balenaOS # time=295.947ms
+    
+    # Subtest: Bluetooth
+        # Subtest: check bluetooth is functional
+            # Subtest: check for hci0
+                ok 1 - should report 1 instance of hci0 interface
+                1..1
+            ok 1 - check for hci0 # time=53.934ms
+            
+            # Subtest: check bluetooth address
+                ok 1 - BD Address should not be AA:AA:AA:AA:AA:AA
+                1..1
+            ok 2 - check bluetooth address # time=24.673ms
+            
+            1..2
+        ok 1 - check bluetooth is functional # time=284.919ms
+        
+        1..1
+    ok 2 - Bluetooth # time=348.735ms
+    
+    # Subtest: Coprocessor
+        # Subtest: attempt to flash firmata
+            # attempting to flash firmware: /usr/src/app/suites/coprocessor/bin/firmata.hex with bootloader: /usr/src/app/suites/coprocessor/bin/bootloader.s37
+            # spawning openocd process with board config -d2,-f,board/balena-fin/balena-fin-v1-1.cfg
+            # spawning telnet client process...
+            # telnet stderr: Connection closed by foreign host.
+            # 
+            # telnet child process exited with code 1
+            # openocd child process exited with code 0
+            ok 1 - bootloader and firmware should start programming
+            ok 2 - bootloader and firmware should finish programming
+            ok 3 - coprocessor should be type of 'EFR32MG1B Blue Gecko'
+            ok 4 - coprocessor should have flash size of '256kbytes'
+            1..4
+        ok 1 - attempt to flash firmata # time=64196.258ms
+        
+        1..1
+    ok 3 - Coprocessor # time=64254.135ms
+    
+    # Subtest: EEPROM
+        # generate test payload: 'MZ6u+UBcnqL4KxAUlo/sE'
+        # Subtest: check eeprom write
+            # writing payload to eeprom
+            ok 1 - no errors should be reported during eeprom - write
+            1..1
+        ok 1 - check eeprom write # time=121.317ms
+        
+        # Subtest: check eeprom read
+            ok 1 - no errors should be reported during eeprom - read
+            ok 2 - expected to read 'MZ6u+UBcnqL4KxAUlo/sE' from eeprom
+            1..2
+        ok 2 - check eeprom read # time=37.404ms
+        
+        1..2
+    ok 4 - EEPROM # time=192.986ms
+    
+    # Subtest: eMMC
+        # Subtest: check size of eMMC
+            # found eMMC of size 8 GB
+            ok 1 - should be of size 8, 16, 32 or 64 GB; is 8 GB
+            1..1
+        ok 1 - check size of eMMC # time=38.648ms
+        
+        1..1
+    ok 5 - eMMC # time=61.129ms
+    
+    # Subtest: Ethernet
+        # Subtest: check eth0 interface is available
+            ok 1 - should be able to see eth0
+            1..1
+        ok 1 - check eth0 interface is available # time=49.474ms
+        
+        # Subtest: check can reach internet
+            ok 1 - should be able to reach the internet
+            1..1
+        ok 2 - check can reach internet # time=4103.091ms
+        
+        1..2
+    ok 6 - Ethernet # time=4176.883ms
+    
+    # Subtest: I2C
+        # Subtest: check i2c interface is available
+            # Subtest: check for i2c addresses
+                ok 1 - i2c address list should be greater than 0
+                # found 3 i2c addresses
+                1..1
+            ok 1 - check for i2c addresses # time=10.354ms
+            
+            1..1
+        ok 1 - check i2c interface is available # time=164.116ms
+        
+        1..1
+    ok 7 - I2C # time=195.734ms
+    
+    ok 8 - Modem # SKIP
+    # Subtest: RGB LED
+        # Subtest: check rgb led can be controlled
+            # setting RGB LED to red
+            # setting RGB LED to blue
+            # setting RGB LED to green
+            # Subtest: check dmesg for driver output
+                ok 1 - should be able to control RGB LED
+                # driver output: [   12.115591] pca953x 11-0020: supply vcc not found, using dummy regulator
+                # [   12.115749] pca953x 11-0020: using no AI
+                # 
+                1..1
+            ok 1 - check dmesg for driver output # time=10.262ms
+            
+            1..1
+        ok 1 - check rgb led can be controlled # time=3130.132ms
+        
+        1..1
+    ok 9 - RGB LED # time=3152.731ms
+    
+    # Subtest: RTC
+        # Subtest: check the RTC is registered
+            # Subtest: check that a date is received
+                # rtc datetime shown as 2023-01-04 11:19:15.603154+00:00
+                # 
+                ok 1 - hwclock should report valid datetime
+                ok 2 - hwclock should not report any errors
+                1..2
+            ok 1 - check that a date is received # time=20.066ms
+            
+            1..1
+        ok 1 - check the RTC is registered # time=470.411ms
+        
+        1..1
+    ok 10 - RTC # time=498.337ms
+    
+    # Subtest: USB
+        # Subtest: check USB list for devices
+            # Subtest: check for at least 3 devices on the bus
+                ok 1 - expecting at least 3 devices on the usb bus
+                1..1
+            ok 1 - check for at least 3 devices on the bus # time=9.684ms
+            
+            1..1
+        ok 1 - check USB list for devices # time=181.91ms
+        
+        1..1
+    ok 11 - USB # time=200.286ms
+    
+    # Subtest: WiFi
+        # Subtest: check wlan0 interface is available
+            # Subtest: check result
+                ok 1 - should contain 1 instance of wlan0 interface
+                1..1
+            ok 1 - check result # time=12.032ms
+            
+            1..1
+        ok 1 - check wlan0 interface is available # time=57.662ms
+        
+        1..1
+    ok 12 - WiFi # time=76.101ms
+    
+    1..12
+    # skip: 1
+ok 1 - balenaFin QA suite # time=73579.082ms
+
+# ignored_tests=
+1..1
+# time=73695.214ms
+# serial='1110000729192019-0210'
+# location='Bundenbach, Rheinland-Pfalz, Germany'
